@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CuentaBanco
 {
-    internal class Program
+    internal class CrearCuentaBancaria
     {
         static void Main(string[] args)
         {
