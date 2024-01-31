@@ -11,12 +11,12 @@ namespace CuentaBanco
         static void Main(string[] args)
         {
             //Variables
-            double monto,saldoInicialAr; ;
+            double montoAr,saldoInicialAr; ;
             int opcion;
             string nombreAr, apellidosAr, direccionAr, cedulaAr;
 
             //Aviso de cuenta
-            Console.WriteLine("Para crear una cuenta, presione cualquier tecla: ");
+            Console.WriteLine("Para crear una cuenta?, presione cualquier tecla: ");
             Console.ReadKey();
 
             Console.WriteLine("\nIngrese informacion solititada a continuacion: ");
@@ -37,54 +37,57 @@ namespace CuentaBanco
             Console.Write("Escriba su saldo inicial: $");
             saldoInicialAr = Convert.ToDouble(Console.ReadLine());
 
+            //Instancia de la clase
             CuentaBancaria cliente1 = new CuentaBancaria(nombreAr,apellidosAr,saldoInicialAr,direccionAr, cedulaAr);
+            //Mensaje de creacion de cuenta
             Console.WriteLine("Felicidades, su cuenta ha sido crada con exito, presione cualquier tecla para continuar :");
             Console.ReadKey();
 
-            Console.WriteLine("\n1.Deposito: ");
-            Console.WriteLine("\n2.Retiro: ");
-            Console.WriteLine("\n3.Consultar: ");
-            Console.WriteLine("\n4.Mostrar la informacion de la cuenta: ");
-            Console.WriteLine("\n5.Salir: ");
-            Console.Write("\nElige un de las opciones: ");
-            opcion = Convert.ToInt32(Console.ReadLine());
-
-            switch (opcion)
+            // Menu
+            do
             {
-                case 1:
-                    Console.Write("Ingrese el Monto Inicial: ");
-                    monto= Convert.ToInt32(Console.ReadLine());
-                    cliente1.Deposito(monto);
+                Console.WriteLine("\n1.Deposito: ");
+                Console.WriteLine("\n2.Retiro: ");
+                Console.WriteLine("\n3.Consultar: ");
+                Console.WriteLine("\n4.Mostrar la informacion de la cuenta: ");
+                Console.WriteLine("\n5.Salir: ");
 
-                    break;
+                Console.Write("\nElige un de las opciones: ");
+                opcion = Convert.ToInt32(Console.ReadLine());
 
-                case 2:
-                    Console.WriteLine("Ingrese el mondo a retirar: $");
-                    monto = Convert.ToInt32(Console.ReadLine());
-                    cliente1.Retiro(monto);
-                    break;
+                switch (opcion)
+                {
+                    case 1:
+                        Console.Write("Ingrese el Monto  a depositar $: ");
+                        montoAr = Convert.ToInt32(Console.ReadLine());
 
-                case 3:
-                    cliente1.ConsultaSaldo();
-                    break;
+                        cliente1.Deposito(montoAr);
 
-                case 4:
-                    Console.WriteLine(cliente1.ToString());
-                    break;
-                
-                default:
-                    Console.WriteLine("Error: Opción inválida: ");
-                    break;
-            }
+                        break;
+
+                    case 2:
+                        Console.Write("Ingrese el monto a retirar: $");
+                        montoAr = Convert.ToDouble(Console.ReadLine());
+
+                        cliente1.Retiro(montoAr);
+                        break;
+
+                    case 3:
+                        cliente1.ConsultaSaldo();
+                        break;
+
+                    case 4:
+                        Console.WriteLine(cliente1.ToString());
+                        break;
+
+
+                }
+
+            } while (opcion >= 1 && opcion <= 4);
+
             
-            if (!(opcion >= 1 && opcion <= 4))
-            {
-                Console.WriteLine("Saliendo del programa...");
-                return; // Salir del método Main y terminar la ejecución del programa
-            }
-            Console.WriteLine(cliente1.ToString());
-            Console.ReadKey();
-            Console.WriteLine("Gracias por crear su cuenta con nosotros: ");
+
+
 
         }
     }
